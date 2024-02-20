@@ -1,0 +1,75 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+  <!-- Page Header -->
+  <header class="masthead mb-0" style="background-image: url('{{url_for('static',filename='img/loginpage_files/rsz_bg_green.png')}}">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>{{params['headname']}}</h1>
+            <span class="subheading">Welcome!
+              <br>You are logged in as {{params['user']}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  {% with messages=get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  {% for category, message in messages %}
+
+  <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+<div class="container">
+ <h2><span class="badge badge-warning">Vulnerability RECORDS</span></h2>
+
+
+  <p>Vulnerability management information stored over here </p>            
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th>vulnid</th>
+        <th>Vulnerability</th>
+        <th>Segment</th>
+        <th>CVE</th>
+        <th>Finder</th>
+        <th>Edit</th>
+        
+
+
+      </tr>
+    </thead>
+    <tbody>
+
+      {% for post in posts %}
+      <tr>
+        <td>{{post.vulnid}}</td>
+        <td>{{post.Vulnerability}}</td>
+        <td>{{post.Segment}}</td>
+        <td>{{post.CVE}}</td>
+        <td>{{post.Finder}}</td>
+        <td><a href="/edit/{{post.vulnid}}"><button class="btn btn-primary">Edit </button> </a> </td>
+      
+       
+       
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+
+  
+ 
+{% endblock %}

@@ -1,0 +1,88 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+  <!-- Page Header -->
+  <header class="masthead mb-0" style="background-image: url('{{url_for('static',filename='img/back.jpg')}})">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>{{params['headname']}}</h1>
+            <span class="subheading">welcome you are logged in</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  {% with messages=get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  {% for category, message in messages %}
+
+  <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+<div class="container">
+  <h2>ADD Vulnerability </h2>
+  
+           <form name="sentMessage" id="contactForm"  action="/insert" method="post">
+            <div class="control-group">
+
+            <div class="form-group floating-label-form-group controls">
+              <label>Vulnerability ID</label>
+              <input type="number" name="vulnid" class="form-control" placeholder="Enter Vulnrability ID" id="Vulnerability" required data-validation-required-message="enter title" >
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+
+            <div class="form-group floating-label-form-group controls">
+              <label>Vulnerability</label>
+              <input type="text" name="Vulnerability" class="form-control" placeholder="Enter Vulnerability" id="Vulnerability" required data-validation-required-message="enter title" >
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Segment</label>
+              <input type="text" name="Segment" class="form-control" placeholder="Enter Segment" id="Segment" required data-validation-required-message="Please enter slug">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group col-xs-12 floating-label-form-group controls">
+              <label>CVE</label>
+              <input type="text" name="CVE" class="form-control" placeholder="Enter CVE ID" id="CVE" required data-validation-required-message="Please enter CVE.">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+           <div class="control-group">
+            <div class="form-group col-xs-12 floating-label-form-group controls">
+              <label>Finder</label>
+              <input type="text" name="Finder" class="form-control" placeholder="Finder" id="Finder" required data-validation-required-message="Finder.">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <br>
+          <div id="success"></div>
+          <div class="form-group">
+            <button onclick="return confirm('Are you sure to Insert Data?');" type="submit" class="btn btn-primary" id="sendMessageButton">INSERT DATA</button>
+          </div>
+        </form>
+  
+
+</div>
+
+
+  
+ 
+{% endblock %}

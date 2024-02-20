@@ -1,0 +1,84 @@
+{% extends "layout.html" %}
+{% block body %}
+
+
+  <!-- Page Header -->
+  <header class="masthead mb-0" style="background-image: url('{{url_for('static',filename='img/home-bg.jpg')}}">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>{{params['headname']}}</h1>
+            <span class="subheading">welcome you are logged in</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+   {% with messages=get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+  {% for category, message in messages %}
+
+  <div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+
+
+<div class="container">
+  <h2>ADD Vulnerability </h2>
+  <a href="/login"> <button class="btn btn-danger" > Home</button> </a>
+  <form name="sentMessage" id="contactForm" novalidate action="{{ url_for('edit', vulnid=post.vulnid) }}" method="post">
+
+
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Vulnerability</label>
+              <input type="text" name="Vulnerability" class="form-control" placeholder="Enter Vulnerability" id="Vulnerability" required data-validation-required-message="enter title" value="{{post.Vulnerability}}">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Segment</label>
+              <input type="text" name="Segment" class="form-control" placeholder="Enter Segment" id="Segment" required data-validation-required-message="Please enter slug" value="{{post.Segment}}">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group col-xs-12 floating-label-form-group controls">
+              <label>CVE</label>
+              <input type="text" name="CVE" class="form-control" placeholder="Enter CVE Id" id="CVE" required data-validation-required-message="pleas enter your CVE." value="{{post.CVE}}">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+           <div class="control-group">
+            <div class="form-group col-xs-12 floating-label-form-group controls">
+              <label>Finder</label>
+              <input type="text" name="Finder" class="form-control" placeholder="enter Finder" id="Finder" required data-validation-required-message="Please enter Finder." value="{{post.Finder}}">
+              <p class="help-block text-danger"></p>
+            </div>
+          </div>
+          <br>
+          <div id="success"></div>
+          <div class="form-group">
+            <button onclick="return confirm('Are you sure to update data?');"  type="submit" class="btn btn-primary" id="sendMessageButton">UPDATE DATA</button>
+          </div>
+
+        </form>
+
+  
+
+</div>
+ 
+
+
+ 
+{% endblock %}

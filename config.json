@@ -1,0 +1,17 @@
+{
+  "params":
+  {
+   "local_server": "True",
+    "local_uri": "mysql://root:@localhost/again",
+    "proud_uri": "mysql://root:@localhost/again",
+    "fb_url":"",
+    "tw_url":"",
+    "gh_url":"",
+    "blog_name": "WELCOME",
+    "headname": "Vulnerability Management System",
+    "user": "root",
+    "password": "123",
+    "login_image": "loginpage_files/rsz_1rsz_blue.png"
+
+  }
+}
